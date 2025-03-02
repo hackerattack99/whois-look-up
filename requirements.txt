@@ -2,6 +2,3 @@ whois==0.9.27
 requests==2.31.0
 rich==13.7.0
 colorama==0.4.6
-pathlib==1.0.1
-logging==0.5.1.2
-shutil==1.0.0
