@@ -8,10 +8,6 @@ from rich.console import Console
 from rich.table import Table
 from rich.text import Text
 
-# Ensure utils module can be imported
-sys.path.append(str(Path(__file__).resolve().parent))
-from utils.util import clean_domain_input
-
 # Initialize console and logging
 console = Console()
 logging.basicConfig(filename="whois_lookup.log", level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -19,10 +15,10 @@ logging.basicConfig(filename="whois_lookup.log", level=logging.INFO, format="%(a
 def banner():
     """Display a fancy banner using Rich."""
     console.print("[bold green]=============================================")
-    console.print("        hacker.tools.kali - WHOIS Lookup")
-    console.print("        Version: v-1.3")
-    console.print("        Owner: Yash Tiwari")
-    console.print("=============================================[/bold green]\n")
+    console.print("[bold green]        hacker.tools.kali - WHOIS Lookup")
+    console.print("[bold green]        Version: v-1.3")
+    console.print("[bold green]        Owner: Yash Tiwari")
+    console.print("[bold green]=============================================[/bold green]\n")
 
 def check_dependencies():
     """Check if the 'whois' command is installed."""
@@ -87,14 +83,7 @@ def whois_lookup(target):
     banner()
     check_dependencies()
 
-    # Validate and clean the domain
-    domain = clean_domain_input(target)
-    if not domain:
-        console.print("[bold red][!] Invalid domain provided. Please enter a valid domain.[/bold red]")
-        logging.error(f"Invalid domain input: {target}")
-        sys.exit(1)
-
-    whois_data = perform_whois_lookup(domain)
+    whois_data = perform_whois_lookup(target)
     display_whois_info(whois_data)
 
 def main(target):
